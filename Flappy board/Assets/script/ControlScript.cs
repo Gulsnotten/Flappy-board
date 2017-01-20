@@ -7,9 +7,14 @@ public class ControlScript : MonoBehaviour {
     public float walkSpeed;
 
     bool canJump;
+    Vector2 normal;
 
-	// Use this for initialization
-	void Start () {
+    public KeyCode m_left = KeyCode.LeftArrow;
+    public KeyCode m_right = KeyCode.RightArrow;
+    public KeyCode m_up = KeyCode.UpArrow;
+
+    // Use this for initialization
+    void Start () {
         m_rigidBody = GetComponent<Rigidbody2D>();
 
         canJump = false;
@@ -20,15 +25,14 @@ public class ControlScript : MonoBehaviour {
     {
         Vector2 vel = m_rigidBody.velocity;
 
-	    if (canJump && Input.GetKey(KeyCode.UpArrow)) {
-            vel.y = m_jumpHeight;
-            m_rigidBody.AddForce(new Vector2(0, m_jumpHeight));
-            m_rigidBody.velocity = vel;
+	    if (canJump && Input.GetKey(m_up)) {
+            Vector2 jump = normal * m_jumpHeight;
+            m_rigidBody.AddForce(jump);
         }
-        if (Input.GetKey(KeyCode.LeftArrow)) {
+        if (Input.GetKey(m_left)) {
             m_rigidBody.AddForce(new Vector2(-walkSpeed, 0));
         }
-        if (Input.GetKey(KeyCode.RightArrow)) {
+        if (Input.GetKey(m_right)) {
             m_rigidBody.AddForce(new Vector2(walkSpeed, 0));
         }
     }
@@ -40,6 +44,7 @@ public class ControlScript : MonoBehaviour {
         foreach (ContactPoint2D contact in p_other.contacts) {
             if (contact.normal.y > 0) {
                 canJump = true;
+                normal = contact.normal;
             }
         }
     }

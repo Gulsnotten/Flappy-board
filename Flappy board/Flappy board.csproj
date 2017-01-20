@@ -67,6 +67,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\script\ControlScript.cs" />
+    <Compile Include="Assets\script\SpawnScript.cs" />
+    <Compile Include="Assets\script\WaveMovementScript.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

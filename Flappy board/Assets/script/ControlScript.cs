@@ -11,6 +11,9 @@ public class ControlScript : MonoBehaviour {
     bool canJump;
     Vector2 normal;
 
+    public bool isInputController;
+    public int ControllerNumber;
+
     public KeyCode m_left = KeyCode.LeftArrow;
     public KeyCode m_right = KeyCode.RightArrow;
     public KeyCode m_up = KeyCode.UpArrow;
@@ -42,13 +45,33 @@ public class ControlScript : MonoBehaviour {
             //    m_rigidBody.AddTorque(-m_rotationSpeed);
             //}
         }
-        if (Input.GetKey(m_left)) {
-            if (vel.x > -m_maxSpeed)
-                m_rigidBody.AddForce(new Vector2(-walkSpeed, 0));
+
+        if (isInputController == true) {
+            string xAxis = "HorizontalController" + ControllerNumber.ToString();
+
+
+            //m_rigidBody.AddForce(new Vector2(-walkSpeed * Input.GetAxis(xAxis), 0));
+
+            if (Input.GetAxis(xAxis) < 0.0f) {
+                if (vel.x > -m_maxSpeed)
+                    m_rigidBody.AddForce(new Vector2(walkSpeed * Input.GetAxis(xAxis), 0));
+            }
+
+            if (Input.GetAxis(xAxis) > 0.0f) {
+                if (vel.x < m_maxSpeed)
+                    m_rigidBody.AddForce(new Vector2(walkSpeed * Input.GetAxis(xAxis), 0));
+            }
         }
-        if (Input.GetKey(m_right)) {
-            if (vel.x < m_maxSpeed)
-                m_rigidBody.AddForce(new Vector2(walkSpeed, 0));
+        else 
+        {
+            if (Input.GetKey(m_left)) {
+                if (vel.x > -m_maxSpeed)
+                    m_rigidBody.AddForce(new Vector2(-walkSpeed, 0));
+            }
+            if (Input.GetKey(m_right)) {
+                if (vel.x < m_maxSpeed)
+                    m_rigidBody.AddForce(new Vector2(walkSpeed, 0));
+            }
         }
     }
 

@@ -26,14 +26,5 @@ public class WaveMovementScript : MonoBehaviour {
         vel.y = currentVel;
 
         m_rigidBody.velocity = vel;
-
-
-
-
-        //Vector2 pos = m_rigidBody.position;
-
-        //pos.y += delta_y;
-
-        //m_rigidBody.position = pos;
     }
 }

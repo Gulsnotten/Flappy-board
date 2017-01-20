@@ -9,24 +9,23 @@ public class SpawnScript : MonoBehaviour {
     public float m_rangeY = 5;
 
     int m_length;
-    float m_time;
+    float m_lastSpawnX;
 
 	// Use this for initialization
 	void Start () {
-        m_time = 0;
+        m_lastSpawnX = -m_interval;
         m_length = m_platforms.Length;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        m_time += Time.deltaTime;
+        float campos = Camera.main.transform.position.x;
+        if (m_lastSpawnX + m_interval < campos) {
+            m_lastSpawnX = campos;
 
-        if (m_time > m_interval) {
-            m_time = 0;
+            GameObject plat = m_platforms[Random.Range(0, m_length)];
 
-            GameObject plat = m_platforms[Random.Range(0, m_length - 1)];
-
-            Vector3 spawn = new Vector2(m_spawnX, m_spawnY + Random.Range(-m_rangeY, m_rangeY));
+            Vector3 spawn = new Vector2(m_lastSpawnX + m_spawnX, m_spawnY + Random.Range(-m_rangeY, m_rangeY));
             spawn.z = 0;
             Instantiate(plat, spawn, transform.rotation);
         }

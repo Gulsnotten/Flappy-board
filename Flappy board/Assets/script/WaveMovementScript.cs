@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class WaveMovementScript : MonoBehaviour {
-    public float m_speed = 10f;
+    //public float m_speed = 10f;
     public float m_amp;
     public float m_freq;
     float m_time;
@@ -13,7 +13,7 @@ public class WaveMovementScript : MonoBehaviour {
         m_time = Random.Range(0, Mathf.PI * 2);
 
         m_rigidBody = GetComponent<Rigidbody2D>();
-        m_rigidBody.velocity = new Vector2(-m_speed, 0);
+        //m_rigidBody.velocity = new Vector2(-m_speed, 0);
     }
 	
 	// Update is called once per frame

@@ -20,8 +20,9 @@ public class ControlScript : MonoBehaviour {
     {
         Vector2 vel = m_rigidBody.velocity;
 
-	    if (Input.GetKey(KeyCode.UpArrow)) {
+	    if (canJump && Input.GetKey(KeyCode.UpArrow)) {
             vel.y = m_jumpHeight;
+            m_rigidBody.AddForce(new Vector2(0, m_jumpHeight));
             m_rigidBody.velocity = vel;
         }
         if (Input.GetKey(KeyCode.LeftArrow)) {
@@ -30,5 +31,21 @@ public class ControlScript : MonoBehaviour {
         if (Input.GetKey(KeyCode.RightArrow)) {
             m_rigidBody.AddForce(new Vector2(walkSpeed, 0));
         }
+    }
+
+    private void OnCollisionStay2D(Collision2D p_other)
+    {
+        canJump = false;
+
+        foreach (ContactPoint2D contact in p_other.contacts) {
+            if (contact.normal.y > 0) {
+                canJump = true;
+            }
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        canJump = false;
     }
 }

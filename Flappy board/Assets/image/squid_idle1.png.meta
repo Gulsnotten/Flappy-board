@@ -1,11 +1,13 @@
 fileFormatVersion: 2
 guid: e6c4cc6d435c7f346a17484da57187ce
-timeCreated: 1484957014
+timeCreated: 1484960353
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: squid_idle1_0
     21300002: squid_idle1_1
+    21300004: squid_idle1_2
+    21300006: squid_idle1_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -73,6 +75,32 @@ TextureImporter:
         serializedVersion: 2
         x: 500
         y: 1000
+        width: 500
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: squid_idle1_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 500
+        width: 500
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: squid_idle1_3
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 500
         width: 500
         height: 500
       alignment: 0

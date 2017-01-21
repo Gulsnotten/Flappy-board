@@ -20,6 +20,11 @@ public class TootScript : MonoBehaviour {
     {
         //m_source.PlayOneShot(m_source.clip, 1f);
 
+        
+        Animator ani = GetComponentInChildren<Animator>();
+        ani.ResetTrigger("rustle");
+        ani.SetTrigger("rustle");
+
         if (!tooted) {
             tooted = true;
             m_source.Play();

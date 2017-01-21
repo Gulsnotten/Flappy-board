@@ -104,7 +104,7 @@ public class ControlScript : MonoBehaviour {
         canJump = false;
 
         foreach (ContactPoint2D contact in p_other.contacts) {
-            if (contact.normal.y > 0) {
+            if (1 > 0) {
                 canJump = true;
                 normal = contact.normal;
 

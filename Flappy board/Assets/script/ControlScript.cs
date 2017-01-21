@@ -7,8 +7,11 @@ public class ControlScript : MonoBehaviour {
     public float walkSpeed;
     public float m_maxSpeed = 2f;
     public float m_rotationSpeed = 1f;
+    public float m_boost = 10f;
+    public float m_boostY = 5f;
 
     bool canJump;
+    bool canBoost;
     Vector2 normal;
 
     public bool isInputController;
@@ -24,6 +27,7 @@ public class ControlScript : MonoBehaviour {
         m_rigidBody = GetComponent<Rigidbody2D>();
 
         canJump = false;
+        canBoost = false;
 	}
 
     // Update is called once per frame
@@ -38,6 +42,21 @@ public class ControlScript : MonoBehaviour {
             }
         }
         else {
+            if (Input.GetKeyDown(m_up) && canBoost) {
+                canBoost = false;
+
+                float rot = m_rigidBody.rotation;
+                float rad = rot / (180 / Mathf.PI);
+
+                Vector2 normalized = new Vector2(Mathf.Cos(rad), Mathf.Sin(rad));
+
+                Vector2 newvel = m_rigidBody.velocity;// normalized * m_boost;
+                newvel.y = m_boostY;
+
+                m_rigidBody.velocity = newvel;
+                //m_rigidBody.AddForce(normalized * m_boost);
+            }
+
             //if (Input.GetKey(m_left)) {
             //    m_rigidBody.AddTorque(m_rotationSpeed);
             //}
@@ -73,6 +92,11 @@ public class ControlScript : MonoBehaviour {
                     m_rigidBody.AddForce(new Vector2(walkSpeed, 0));
             }
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        canBoost = true;
     }
 
     private void OnCollisionStay2D(Collision2D p_other)

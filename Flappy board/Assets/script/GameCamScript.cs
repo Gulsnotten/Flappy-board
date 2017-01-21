@@ -4,6 +4,7 @@ using System.Collections;
 public class GameCamScript : MonoBehaviour {
     public GameObject[] m_objects;
     public float m_scrollSpeed;
+    public float m_offset = -2;
 
     float m_posX;
 
@@ -18,7 +19,7 @@ public class GameCamScript : MonoBehaviour {
         float maxPos = m_posX;
 
         foreach (GameObject obj in m_objects) {
-            float x = obj.transform.position.x;
+            float x = obj.transform.position.x + m_offset;
             if (x > maxPos) {
                 maxPos = x;
             }

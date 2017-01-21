@@ -89,6 +89,7 @@
     <Compile Include="Assets\script\PlayerBucketScript.cs" />
     <Compile Include="Assets\script\PlayerIDScript.cs" />
     <Compile Include="Assets\script\PlayerKill.cs" />
+    <Compile Include="Assets\script\PlayerScores.cs" />
     <Compile Include="Assets\script\PlayerSlotScript.cs" />
     <Compile Include="Assets\script\RandomLoopScript.cs" />
     <Compile Include="Assets\script\RandomRotScript.cs" />

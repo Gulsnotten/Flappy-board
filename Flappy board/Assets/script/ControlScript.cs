@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class ControlScript : MonoBehaviour {
-    Rigidbody2D m_rigidBody;
     public float m_jumpHeight = 10f;
     public float walkSpeed;
     public float m_maxSpeed = 2f;
@@ -15,14 +14,13 @@ public class ControlScript : MonoBehaviour {
     public AudioClip m_doubleJump;
     public AudioClip m_bump;
     AudioSource m_audio;
+    Rigidbody2D m_rigidBody;
+    InputModuleScript m_input;
 
     bool canJump;
     bool canBoost;
+    bool releasedJump;
     Vector2 normal;
-
-    public bool isInputController;
-    public int ControllerNumber;
-    public bool releasedJump;
 
     public KeyCode m_left = KeyCode.LeftArrow;
     public KeyCode m_right = KeyCode.RightArrow;
@@ -33,6 +31,7 @@ public class ControlScript : MonoBehaviour {
     void Start () {
         m_rigidBody = GetComponent<Rigidbody2D>();
         m_audio = GetComponent<AudioSource>();
+        m_input = GetComponent<InputModuleScript>();
 
         canJump = false;
         canBoost = false;
@@ -44,12 +43,12 @@ public class ControlScript : MonoBehaviour {
     {
         Vector2 vel = m_rigidBody.velocity;
 
-        if (!Input.GetKey(m_up)) {
+        if (!m_input.GetSelect(false)) {
             releasedJump = true;
         }
 
 	    if (canJump) {
-            if (Input.GetKey(m_up) && releasedJump) {
+            if (m_input.GetSelect(false) && releasedJump) {
                 releasedJump = false;
 
                 Vector2 jump = normal * m_jumpHeight;
@@ -60,7 +59,7 @@ public class ControlScript : MonoBehaviour {
             }
         }
         else {
-            if (Input.GetKeyDown(m_up) && canBoost && releasedJump) {
+            if (m_input.GetSelect(true) && canBoost && releasedJump) {
                 m_audio.PlayOneShot(m_doubleJump, m_volume);
 
                 canBoost = false;
@@ -77,29 +76,13 @@ public class ControlScript : MonoBehaviour {
             }
         }
 
-        if (isInputController == true) {
-            string xAxis = "HorizontalController" + ControllerNumber.ToString();
-
-            if (Input.GetAxis(xAxis) < 0.0f) {
-                if (vel.x > -m_maxSpeed)
-                    m_rigidBody.AddForce(new Vector2(walkSpeed * Input.GetAxis(xAxis), 0));
-            }
-
-            if (Input.GetAxis(xAxis) > 0.0f) {
-                if (vel.x < m_maxSpeed)
-                    m_rigidBody.AddForce(new Vector2(walkSpeed * Input.GetAxis(xAxis), 0));
-            }
+        if (m_input.GetLeft(false) > 0) {
+            if (vel.x > -m_maxSpeed)
+                m_rigidBody.AddForce(new Vector2(m_input.GetLeft(false) * -walkSpeed, 0));
         }
-        else 
-        {
-            if (Input.GetKey(m_left)) {
-                if (vel.x > -m_maxSpeed)
-                    m_rigidBody.AddForce(new Vector2(-walkSpeed, 0));
-            }
-            if (Input.GetKey(m_right)) {
-                if (vel.x < m_maxSpeed)
-                    m_rigidBody.AddForce(new Vector2(walkSpeed, 0));
-            }
+        if (m_input.GetRight(false) > 0) {
+            if (vel.x < m_maxSpeed)
+                m_rigidBody.AddForce(new Vector2(m_input.GetRight(false) * walkSpeed, 0));
         }
     }
 

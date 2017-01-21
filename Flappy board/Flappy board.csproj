@@ -52,6 +52,9 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Advertisements">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Advertisements.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
@@ -67,6 +70,9 @@
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Purchasing">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Purchasing.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.VR">
       <HintPath>Library\UnityAssemblies\UnityEngine.VR.dll</HintPath>
     </Reference>
@@ -75,6 +81,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\GameEnderScript.cs" />
+    <Compile Include="Assets\TootScript.cs" />
     <Compile Include="Assets\script\BG_ScrollScript.cs" />
     <Compile Include="Assets\script\ControlScript.cs" />
     <Compile Include="Assets\script\GameCamScript.cs" />
@@ -84,7 +92,10 @@
     <Compile Include="Assets\script\KeyInput.cs" />
     <Compile Include="Assets\script\KillEffectScript.cs" />
     <Compile Include="Assets\script\KillZoneScript.cs" />
+    <Compile Include="Assets\script\PlayerBucketScript.cs" />
+    <Compile Include="Assets\script\PlayerIDScript.cs" />
     <Compile Include="Assets\script\PlayerKill.cs" />
+    <Compile Include="Assets\script\PlayerSlotScript.cs" />
     <Compile Include="Assets\script\RandomLoopScript.cs" />
     <Compile Include="Assets\script\RandomRotScript.cs" />
     <Compile Include="Assets\script\SpawnScript.cs" />

@@ -21,6 +21,8 @@ public class ControlScript : MonoBehaviour {
     bool canBoost;
     bool releasedJump;
     Vector2 normal;
+    public ParticleSystem m_jumpParticle;
+    public ParticleSystem m_doubleJumpParticle;
 
     public KeyCode m_left = KeyCode.LeftArrow;
     public KeyCode m_right = KeyCode.RightArrow;
@@ -56,6 +58,8 @@ public class ControlScript : MonoBehaviour {
                 m_rigidBody.AddForce(jump);
 
                 m_audio.PlayOneShot(m_jump, m_volume);
+
+                Instantiate(m_jumpParticle, transform.position, transform.rotation);
             }
         }
         else {
@@ -73,6 +77,8 @@ public class ControlScript : MonoBehaviour {
                 newvel.y = m_boostY;
 
                 m_rigidBody.velocity = newvel;
+
+                Instantiate(m_doubleJumpParticle, transform.position, transform.rotation);
             }
         }
 

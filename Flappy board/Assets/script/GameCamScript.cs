@@ -19,9 +19,11 @@ public class GameCamScript : MonoBehaviour {
         float maxPos = m_posX;
 
         foreach (GameObject obj in m_objects) {
-            float x = obj.transform.position.x + m_offset;
-            if (x > maxPos) {
-                maxPos = x;
+            if (obj != null) {
+                float x = obj.transform.position.x + m_offset;
+                if (x > maxPos) {
+                    maxPos = x;
+                }
             }
         }
 

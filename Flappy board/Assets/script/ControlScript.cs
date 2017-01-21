@@ -9,6 +9,12 @@ public class ControlScript : MonoBehaviour {
     public float m_rotationSpeed = 1f;
     public float m_boost = 10f;
     public float m_boostY = 5f;
+    public float m_volume = 0.7f;
+
+    public AudioClip m_jump;
+    public AudioClip m_doubleJump;
+    public AudioClip m_bump;
+    AudioSource m_audio;
 
     bool canJump;
     bool canBoost;
@@ -16,6 +22,7 @@ public class ControlScript : MonoBehaviour {
 
     public bool isInputController;
     public int ControllerNumber;
+    public bool releasedJump;
 
     public KeyCode m_left = KeyCode.LeftArrow;
     public KeyCode m_right = KeyCode.RightArrow;
@@ -25,9 +32,11 @@ public class ControlScript : MonoBehaviour {
     // Use this for initialization
     void Start () {
         m_rigidBody = GetComponent<Rigidbody2D>();
+        m_audio = GetComponent<AudioSource>();
 
         canJump = false;
         canBoost = false;
+        releasedJump = false;
 	}
 
     // Update is called once per frame
@@ -35,14 +44,25 @@ public class ControlScript : MonoBehaviour {
     {
         Vector2 vel = m_rigidBody.velocity;
 
+        if (!Input.GetKey(m_up)) {
+            releasedJump = true;
+        }
+
 	    if (canJump) {
-            if (Input.GetKey(m_up)) {
+            if (Input.GetKey(m_up) && releasedJump) {
+                releasedJump = false;
+
                 Vector2 jump = normal * m_jumpHeight;
+
                 m_rigidBody.AddForce(jump);
+
+                m_audio.PlayOneShot(m_jump, m_volume);
             }
         }
         else {
-            if (Input.GetKeyDown(m_up) && canBoost) {
+            if (Input.GetKeyDown(m_up) && canBoost && releasedJump) {
+                m_audio.PlayOneShot(m_doubleJump, m_volume);
+
                 canBoost = false;
 
                 float rot = m_rigidBody.rotation;
@@ -54,22 +74,11 @@ public class ControlScript : MonoBehaviour {
                 newvel.y = m_boostY;
 
                 m_rigidBody.velocity = newvel;
-                //m_rigidBody.AddForce(normalized * m_boost);
             }
-
-            //if (Input.GetKey(m_left)) {
-            //    m_rigidBody.AddTorque(m_rotationSpeed);
-            //}
-            //if (Input.GetKey(m_right)) {
-            //    m_rigidBody.AddTorque(-m_rotationSpeed);
-            //}
         }
 
         if (isInputController == true) {
             string xAxis = "HorizontalController" + ControllerNumber.ToString();
-
-
-            //m_rigidBody.AddForce(new Vector2(-walkSpeed * Input.GetAxis(xAxis), 0));
 
             if (Input.GetAxis(xAxis) < 0.0f) {
                 if (vel.x > -m_maxSpeed)
@@ -100,6 +109,10 @@ public class ControlScript : MonoBehaviour {
             if (contact.normal.y > 0) {
                 canBoost = true;
             }
+        }
+
+        if (p_other.gameObject.tag == "player") {
+            m_audio.PlayOneShot(m_bump, m_volume);
         }
     }
 

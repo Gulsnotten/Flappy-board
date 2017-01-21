@@ -73,6 +73,7 @@
     <Compile Include="Assets\script\KillEffectScript.cs" />
     <Compile Include="Assets\script\KillZoneScript.cs" />
     <Compile Include="Assets\script\PlayerKill.cs" />
+    <Compile Include="Assets\script\RandomLoopScript.cs" />
     <Compile Include="Assets\script\RandomRotScript.cs" />
     <Compile Include="Assets\script\SpawnScript.cs" />
     <Compile Include="Assets\script\WaveMovementScript.cs" />

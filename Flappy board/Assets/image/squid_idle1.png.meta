@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: e6c4cc6d435c7f346a17484da57187ce
-timeCreated: 1484960353
+guid: 39e8d75a781903e4eac3eccc56555989
+timeCreated: 1484964889
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -8,10 +8,14 @@ TextureImporter:
     21300002: squid_idle1_1
     21300004: squid_idle1_2
     21300006: squid_idle1_3
+    21300008: squid_idle1_4
+    21300010: squid_idle1_5
+    21300012: squid_idle1_6
+    21300014: squid_idle1_7
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
+    enableMipMap: 1
     linearTexture: 0
     correctGamma: 0
     fadeOut: 0
@@ -101,6 +105,58 @@ TextureImporter:
         serializedVersion: 2
         x: 500
         y: 500
+        width: 500
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: squid_idle1_4
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 500
+        width: 500
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: squid_idle1_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 500
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: squid_idle1_6
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 0
+        width: 500
+        height: 500
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: squid_idle1_7
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 0
         width: 500
         height: 500
       alignment: 0

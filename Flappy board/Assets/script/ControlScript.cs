@@ -94,9 +94,13 @@ public class ControlScript : MonoBehaviour {
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D p_other)
     {
-        canBoost = true;
+        foreach (ContactPoint2D contact in p_other.contacts) {
+            if (contact.normal.y > 0) {
+                canBoost = true;
+            }
+        }
     }
 
     private void OnCollisionStay2D(Collision2D p_other)
@@ -115,7 +119,7 @@ public class ControlScript : MonoBehaviour {
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
+    private void OnCollisionExit2D(Collision2D p_other)
     {
         canJump = false;
     }

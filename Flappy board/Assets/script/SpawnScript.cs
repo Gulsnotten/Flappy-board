@@ -22,11 +22,7 @@ public class SpawnScript : MonoBehaviour {
         float campos = Camera.main.transform.position.x;
         if (m_lastSpawnX + m_interval < campos) {
             m_lastSpawnX = campos;
-            if (m_harderMode < 4)
-            {
-                    m_harderMode++;   
-            }
-            GameObject plat = m_platforms[Random.Range(0, m_harderMode)];
+            GameObject plat = m_platforms[Random.Range(0, m_platforms.Length)];
             Vector3 spawn = new Vector2(m_lastSpawnX + m_spawnX, m_spawnY + Random.Range(-m_rangeY, m_rangeY));
             spawn.z = 0;
             Instantiate(plat, spawn, transform.rotation);

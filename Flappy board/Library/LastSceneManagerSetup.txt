@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/levels/Rumble2.unity
+- path: Assets/levels/MainMenu.unity
   isLoaded: 1
   isActive: 1

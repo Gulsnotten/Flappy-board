@@ -7,14 +7,15 @@ public class SpawnScript : MonoBehaviour {
     public float m_spawnX = 10;
     public float m_spawnY = -2;
     public float m_rangeY = 5;
+    private int m_count = 7;
+    private int m_RandomStart = 0;
+    private int m_harderMode = 0;
 
-    int m_length;
     float m_lastSpawnX;
 
 	// Use this for initialization
 	void Start () {
         m_lastSpawnX = -m_interval;
-        m_length = m_platforms.Length;
 	}
 	
 	// Update is called once per frame
@@ -23,7 +24,22 @@ public class SpawnScript : MonoBehaviour {
         if (m_lastSpawnX + m_interval < campos) {
             m_lastSpawnX = campos;
 
-            GameObject plat = m_platforms[Random.Range(0, m_length)];
+            if (m_count == 0)
+            {
+                if (m_platforms.LongLength <= m_RandomStart)
+                {
+                    if (m_RandomStart < m_platforms.Length)
+                    {
+                        m_RandomStart++;
+                        if (m_harderMode < 5)
+                        {
+                            m_harderMode++;
+                        }
+                    }
+                }
+                m_count = 5- m_harderMode;
+            }
+            GameObject plat = m_platforms[Random.Range(0, m_RandomStart + 2)];
 
             Vector3 spawn = new Vector2(m_lastSpawnX + m_spawnX, m_spawnY + Random.Range(-m_rangeY, m_rangeY));
             spawn.z = 0;

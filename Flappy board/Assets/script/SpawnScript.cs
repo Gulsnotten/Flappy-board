@@ -7,8 +7,7 @@ public class SpawnScript : MonoBehaviour {
     public float m_spawnX = 10;
     public float m_spawnY = -2;
     public float m_rangeY = 5;
-    private int m_count = 7;
-    private int m_RandomStart = 0;
+    private int m_count = 0;
     private int m_harderMode = 0;
 
     float m_lastSpawnX;
@@ -23,24 +22,19 @@ public class SpawnScript : MonoBehaviour {
         float campos = Camera.main.transform.position.x;
         if (m_lastSpawnX + m_interval < campos) {
             m_lastSpawnX = campos;
-
-            if (m_count == 0)
+            if (m_harderMode < 4)
             {
-                if (m_platforms.LongLength <= m_RandomStart)
+                if (m_count < 1)
                 {
-                    if (m_RandomStart < m_platforms.Length)
-                    {
-                        m_RandomStart++;
-                        if (m_harderMode < 5)
-                        {
-                            m_harderMode++;
-                        }
-                    }
+                    m_count++;
                 }
-                m_count = 5- m_harderMode;
+                else
+                {
+                    m_count = 0;
+                    m_harderMode++;
+                }
             }
-            GameObject plat = m_platforms[Random.Range(0, m_RandomStart + 2)];
-
+            GameObject plat = m_platforms[Random.Range(0, m_harderMode)];
             Vector3 spawn = new Vector2(m_lastSpawnX + m_spawnX, m_spawnY + Random.Range(-m_rangeY, m_rangeY));
             spawn.z = 0;
             Instantiate(plat, spawn, transform.rotation);

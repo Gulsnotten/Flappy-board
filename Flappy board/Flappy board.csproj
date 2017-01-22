@@ -91,6 +91,7 @@
     <Compile Include="Assets\script\PlayerKill.cs" />
     <Compile Include="Assets\script\PlayerScores.cs" />
     <Compile Include="Assets\script\PlayerSlotScript.cs" />
+    <Compile Include="Assets\script\PlayerSoundScript.cs" />
     <Compile Include="Assets\script\RandomLoopScript.cs" />
     <Compile Include="Assets\script\RandomRotScript.cs" />
     <Compile Include="Assets\script\SpawnScript.cs" />

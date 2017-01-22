@@ -11,7 +11,11 @@ public class KillEffectScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	    if (!m_animation.isPlaying) {
+
+        
+
+
+        if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime > 1) {
             Destroy(gameObject);
         }
 	}

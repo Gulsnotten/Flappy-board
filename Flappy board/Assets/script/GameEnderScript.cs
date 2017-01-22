@@ -7,6 +7,8 @@ public class GameEnderScript : MonoBehaviour {
     public float m_length;
     float m_time;
     bool m_switched;
+    public bool m_IsRumble = true;
+    public string[] m_RumbleLevels;
 
     private void Start()
     {
@@ -18,15 +20,16 @@ public class GameEnderScript : MonoBehaviour {
         m_time += Time.deltaTime;
 
         if (m_time > m_length) {
-            m_switched = true;
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        }
-    }
-
-    private void OnDestroy()
-    {
-        if (!m_switched) {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            if (m_IsRumble == true)
+            {
+                int rand = Random.Range(0, m_RumbleLevels.Length+1);
+                SceneManager.LoadScene(m_RumbleLevels[rand]);
+            }
+            else
+            {
+                m_switched = true;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
         }
     }
 }

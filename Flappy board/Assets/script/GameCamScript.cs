@@ -1,11 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class GameCamScript : MonoBehaviour {
     public GameObject[] m_objects;
     public GameObject m_ender;
     public float m_scrollSpeed;
     public float m_offset = -2;
+    public bool m_followOn = true;
 
     float m_posX;
     bool m_done;
@@ -18,10 +20,12 @@ public class GameCamScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        SetCamPos();
+        if (m_followOn == true)
+        {
+            SetCamPos();
+        }
         CheckIfDone();
 	}
-
     void SetCamPos()
     {
         m_posX += m_scrollSpeed * Time.deltaTime;
@@ -60,7 +64,8 @@ public class GameCamScript : MonoBehaviour {
             m_done = true;
             GameObject ender = Instantiate(m_ender, winner.transform.position, winner.transform.rotation);
 
-            foreach (ParticleSystem ps in winner.GetComponentsInChildren<ParticleSystem>()) {
+            foreach (ParticleSystem ps in winner.GetComponentsInChildren<ParticleSystem>())
+            {
                 ps.Play();
             }
         }

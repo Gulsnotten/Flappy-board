@@ -24,15 +24,7 @@ public class SpawnScript : MonoBehaviour {
             m_lastSpawnX = campos;
             if (m_harderMode < 4)
             {
-                if (m_count < 1)
-                {
-                    m_count++;
-                }
-                else
-                {
-                    m_count = 0;
-                    m_harderMode++;
-                }
+                    m_harderMode++;   
             }
             GameObject plat = m_platforms[Random.Range(0, m_harderMode)];
             Vector3 spawn = new Vector2(m_lastSpawnX + m_spawnX, m_spawnY + Random.Range(-m_rangeY, m_rangeY));

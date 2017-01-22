@@ -10,10 +10,7 @@ public class ControlScript : MonoBehaviour {
     public float m_boostY = 5f;
     public float m_volume = 0.7f;
 
-    public AudioClip m_jump;
-    public AudioClip m_doubleJump;
-    public AudioClip m_bump;
-    AudioSource m_audio;
+    PlayerSoundScript m_sounds;
     Rigidbody2D m_rigidBody;
     InputModuleScript m_input;
 
@@ -24,15 +21,10 @@ public class ControlScript : MonoBehaviour {
     public ParticleSystem m_jumpParticle;
     public ParticleSystem m_doubleJumpParticle;
 
-    public KeyCode m_left = KeyCode.LeftArrow;
-    public KeyCode m_right = KeyCode.RightArrow;
-    public KeyCode m_up = KeyCode.UpArrow;
-    public KeyCode m_down = KeyCode.DownArrow;
-
     // Use this for initialization
     void Start () {
         m_rigidBody = GetComponent<Rigidbody2D>();
-        m_audio = GetComponent<AudioSource>();
+        m_sounds = GetComponent<PlayerSoundScript>();
         m_input = GetComponent<InputModuleScript>();
 
         canJump = false;
@@ -57,14 +49,14 @@ public class ControlScript : MonoBehaviour {
 
                 m_rigidBody.AddForce(jump);
 
-                m_audio.PlayOneShot(m_jump, m_volume);
+                m_sounds.PlayJump();
 
                 Instantiate(m_jumpParticle, transform.position, transform.rotation);
             }
         }
         else {
             if (m_input.GetSelect(true) && canBoost && releasedJump) {
-                m_audio.PlayOneShot(m_doubleJump, m_volume);
+                m_sounds.PlayDoubleJump();
 
                 canBoost = false;
 
@@ -98,10 +90,6 @@ public class ControlScript : MonoBehaviour {
             if (contact.normal.y > 0) {
                 canBoost = true;
             }
-        }
-
-        if (p_other.gameObject.tag == "player") {
-            m_audio.PlayOneShot(m_bump, m_volume);
         }
     }
 

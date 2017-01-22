@@ -12,10 +12,13 @@ public class GameCamScript : MonoBehaviour {
     float m_posX;
     bool m_done;
 
+    AudioSource m_source;
+
 	// Use this for initialization
 	void Start () {
         m_posX = 0;
         m_done = false;
+        m_source = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -61,6 +64,8 @@ public class GameCamScript : MonoBehaviour {
         }
 
         if (length == 1 && !m_done) {
+            winner.GetComponent<PlayerSoundScript>().PlayWinSound();
+
             m_done = true;
             GameObject ender = Instantiate(m_ender, winner.transform.position, winner.transform.rotation);
 

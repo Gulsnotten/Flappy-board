@@ -75,6 +75,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\BoostPlatformScript.cs" />
     <Compile Include="Assets\script\BG_ScrollScript.cs" />
     <Compile Include="Assets\script\ControlScript.cs" />
     <Compile Include="Assets\script\GameCamScript.cs" />

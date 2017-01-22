@@ -26,7 +26,7 @@ public class TootScript : MonoBehaviour {
         ani.ResetTrigger("rustle");
         ani.SetTrigger("rustle");
 
-        if (!tooted) {
+        if (!tooted && Random.Range(0,2) == 0) {
             tooted = true;
             m_source.pitch = 1 + Random.Range(m_minPitch, m_maxPitch);
             m_source.PlayOneShot(m_source.clip, tootVol);

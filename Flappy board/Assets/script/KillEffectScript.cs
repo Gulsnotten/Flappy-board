@@ -16,7 +16,8 @@ public class KillEffectScript : MonoBehaviour {
 
 
         if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime > 1) {
-            Destroy(gameObject);
+            GetComponent<SpriteRenderer>().enabled = false;
+            //Destroy(gameObject);
         }
 	}
 }
